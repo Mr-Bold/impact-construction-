@@ -256,92 +256,116 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#eef0ef] text-[#111214]">
+    <div className="min-h-screen bg-[#f4f5f3] text-[#111214]">
       <div className="flex min-h-screen">
-        {/* Sidebar */}
-        <aside className={`${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-30 w-72 bg-[#08090a] text-white transition-transform duration-300 lg:static lg:translate-x-0`}>
+        <aside
+          className={`${
+            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          } fixed inset-y-0 left-0 z-30 w-72 border-r border-[#1f2a37] bg-[#071b34] text-white transition-transform duration-300 lg:static lg:translate-x-0`}
+        >
           <div className="flex items-center justify-between border-b border-white/10 p-6">
-            <div><p className="text-xs font-black uppercase tracking-[0.25em] text-[#d7a83d]">Impact</p><h2 className="mt-2 text-2xl font-black">Operations</h2></div>
-            <button onClick={() => setMobileMenuOpen(false)} className="text-white/60 lg:hidden" aria-label="Close navigation">X</button>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.32em] text-[#f4b51b]">Impact</p>
+              <h2 className="mt-2 text-2xl font-black">Operations</h2>
+            </div>
+            <button onClick={() => setMobileMenuOpen(false)} className="text-white/60 lg:hidden" aria-label="Close navigation">
+              X
+            </button>
           </div>
+
           <nav className="space-y-1 px-4 py-6">
-            <button
-              onClick={() => changePage('dashboard')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'dashboard' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Dashboard
-            </button>
-            <button
-              onClick={() => changePage('projects')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'projects' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => changePage('requests')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'requests' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Service Requests
-            </button>
-            <button
-              onClick={() => changePage('customers')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'customers' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Customers
-            </button>
-            <button
-              onClick={() => changePage('categories')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'categories' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Categories
-            </button>
-            <button
-              onClick={() => changePage('analytics')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'analytics' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Analytics
-            </button>
-            <button
-              onClick={() => changePage('settings')}
-              className={`w-full border-l-2 px-4 py-3 text-left text-sm font-bold ${activePage === 'settings' ? 'border-[#d7a83d] bg-white/10 text-[#d7a83d]' : 'border-transparent text-white/65 hover:bg-white/5 hover:text-white'}`}
-            >
-              Settings
-            </button>
+            {[
+              ['dashboard', 'Dashboard'],
+              ['projects', 'Projects'],
+              ['requests', 'Service Requests'],
+              ['customers', 'Customers'],
+              ['categories', 'Categories'],
+              ['analytics', 'Analytics'],
+              ['settings', 'Settings'],
+            ].map(([page, label]) => (
+              <button
+                key={page}
+                onClick={() => changePage(page)}
+                className={`w-full rounded-xl border-l-2 px-4 py-3 text-left text-sm font-black uppercase tracking-[0.18em] transition ${
+                  activePage === page
+                    ? 'border-[#f4b51b] bg-white/10 text-[#f4b51b]'
+                    : 'border-transparent text-white/70 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </nav>
+
           <div className="absolute bottom-0 w-full border-t border-white/10 p-4">
-            <button onClick={handleLogout} className="w-full border border-white/20 px-4 py-3 text-sm font-bold text-white/75 hover:border-[#d7a83d] hover:text-[#d7a83d]">
+            <button
+              onClick={handleLogout}
+              className="w-full rounded-xl border border-white/20 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-white/80 transition hover:border-[#f4b51b] hover:text-[#f4b51b]"
+            >
               Logout
             </button>
           </div>
         </aside>
-        {mobileMenuOpen && <button onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 z-20 bg-black/60 lg:hidden" aria-label="Close navigation overlay" />}
 
-        {/* Main Content */}
+        {mobileMenuOpen && (
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 z-20 bg-black/60 lg:hidden"
+            aria-label="Close navigation overlay"
+          />
+        )}
+
         <main className="min-w-0 flex-1">
-          <div className="border-b border-[#d7d9d7] bg-[#f8f8f6] px-5 py-5 sm:px-8">
-            <div className="flex items-center justify-between"><div className="flex items-center gap-4"><button onClick={() => setMobileMenuOpen(true)} className="border border-[#c8c9c8] px-3 py-2 text-sm lg:hidden" aria-label="Open navigation">Menu</button><div><p className="text-xs font-black uppercase tracking-[0.25em] text-[#b47b15]">Admin workspace</p><h1 className="mt-1 text-2xl font-black sm:text-3xl">{pageTitles[activePage][0]}</h1><p className="hidden text-sm text-[#62646a] sm:block">{pageTitles[activePage][1]}</p></div></div><Link to="/" className="text-xs font-black uppercase tracking-wider text-[#62646a] hover:text-[#b47b15]">View site -&gt;</Link></div>
+          <div className="border-b border-[#dfe3df] bg-[#f8f8f6] px-5 py-5 sm:px-8">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setMobileMenuOpen(true)}
+                  className="rounded-xl border border-[#c8c9c8] bg-white px-3 py-2 text-sm font-black uppercase tracking-[0.18em] lg:hidden"
+                  aria-label="Open navigation"
+                >
+                  Menu
+                </button>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.32em] text-[#b47b15]">Admin workspace</p>
+                  <h1 className="mt-1 text-2xl font-black sm:text-3xl">{pageTitles[activePage][0]}</h1>
+                  <p className="hidden text-sm text-[#62646a] sm:block">{pageTitles[activePage][1]}</p>
+                </div>
+              </div>
+
+              <Link to="/" className="text-xs font-black uppercase tracking-[0.18em] text-[#62646a] hover:text-[#b47b15]">
+                View site →
+              </Link>
+            </div>
           </div>
 
           <div className="p-5 sm:p-8">
             {activePage === 'dashboard' && (
               <div>
-                <div className="mb-8 flex items-end justify-between"><div><p className="text-sm font-black uppercase tracking-widest text-[#b47b15]">Today at a glance</p><h2 className="mt-2 text-3xl font-black">Keep momentum.</h2></div><span className="hidden text-sm text-[#62646a] sm:block">Live from Supabase</span></div>
+                <div className="mb-8 flex items-end justify-between">
+                  <div>
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Today at a glance</p>
+                    <h2 className="mt-2 text-3xl font-black">Keep momentum.</h2>
+                  </div>
+                  <span className="hidden text-sm text-[#62646a] sm:block">Live from Supabase</span>
+                </div>
+
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  <div className="border border-[#d2d3d1] border-t-4 border-t-[#d7a83d] bg-white p-6 shadow-sm">
-                    <p className="text-xs font-black uppercase tracking-widest text-[#62646a]">Total projects</p>
+                  <div className="rounded-2xl border border-[#dfe3df] border-t-4 border-t-[#f4b51b] bg-white p-5 shadow-sm">
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#62646a]">Total projects</p>
                     <p className="mt-3 text-4xl font-black">{stats.totalProjects}</p>
                   </div>
-                  <div className="border border-[#d2d3d1] border-t-4 border-t-[#8f9699] bg-white p-6 shadow-sm">
-                    <p className="text-xs font-black uppercase tracking-widest text-[#62646a]">Total customers</p>
+                  <div className="rounded-2xl border border-[#dfe3df] border-t-4 border-t-[#64748b] bg-white p-5 shadow-sm">
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#62646a]">Total customers</p>
                     <p className="mt-3 text-4xl font-black">{stats.totalCustomers}</p>
                   </div>
-                  <div className="border border-[#d2d3d1] border-t-4 border-t-[#c28b1b] bg-white p-6 shadow-sm">
-                    <p className="text-xs font-black uppercase tracking-widest text-[#62646a]">Pending requests</p>
+                  <div className="rounded-2xl border border-[#dfe3df] border-t-4 border-t-[#d7a83d] bg-white p-5 shadow-sm">
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#62646a]">Pending requests</p>
                     <p className="mt-3 text-4xl font-black text-[#b47b15]">{stats.pendingRequests}</p>
                   </div>
-                  <div className="border border-[#d2d3d1] border-t-4 border-t-[#4f7461] bg-white p-6 shadow-sm">
-                    <p className="text-xs font-black uppercase tracking-widest text-[#62646a]">Completed requests</p>
-                    <p className="mt-3 text-4xl font-black text-[#4f7461]">{stats.completedRequests}</p>
+                  <div className="rounded-2xl border border-[#dfe3df] border-t-4 border-t-[#1f6a52] bg-white p-5 shadow-sm">
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#62646a]">Completed requests</p>
+                    <p className="mt-3 text-4xl font-black text-[#1f6a52]">{stats.completedRequests}</p>
                   </div>
                 </div>
               </div>
@@ -349,101 +373,171 @@ export default function AdminDashboard() {
 
             {activePage === 'projects' && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Manage Projects</h2>
-                <form onSubmit={handleCreateProject} className="bg-white rounded-lg shadow p-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input name="title" value={projectForm.title} onChange={handleProjectChange} placeholder="Project title" required className="border rounded px-4 py-2" />
-                  <select name="category_id" value={projectForm.category_id} onChange={handleProjectChange} className="border rounded px-4 py-2">
+                <div className="mb-6 flex items-end justify-between">
+                  <div>
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Portfolio</p>
+                    <h2 className="mt-2 text-2xl font-black">Manage Projects</h2>
+                  </div>
+                </div>
+
+                <form onSubmit={handleCreateProject} className="mb-8 grid grid-cols-1 gap-4 rounded-3xl border border-[#dfe3df] bg-white p-6 shadow-sm md:grid-cols-2">
+                  <input name="title" value={projectForm.title} onChange={handleProjectChange} placeholder="Project title" required className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <select name="category_id" value={projectForm.category_id} onChange={handleProjectChange} className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]">
                     <option value="">No category</option>
-                    {categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}
+                    {categories.map((category) => (
+                      <option key={category.id} value={category.id}>{category.name}</option>
+                    ))}
                   </select>
-                  <input name="location" value={projectForm.location} onChange={handleProjectChange} placeholder="Location" className="border rounded px-4 py-2" />
-                  <input name="completion_date" type="date" value={projectForm.completion_date} onChange={handleProjectChange} className="border rounded px-4 py-2" />
-                  <input name="duration" value={projectForm.duration} onChange={handleProjectChange} placeholder="Duration" className="border rounded px-4 py-2" />
-                  <input type="file" accept="image/*" onChange={(event) => setCoverImageFile(event.target.files?.[0] || null)} className="border rounded px-4 py-2 md:col-span-2" />
-                  <textarea name="description" value={projectForm.description} onChange={handleProjectChange} placeholder="Description" rows="3" className="border rounded px-4 py-2 md:col-span-2" />
-                  <label className="flex items-center gap-2"><input name="is_featured" type="checkbox" checked={projectForm.is_featured} onChange={handleProjectChange} /> Featured project</label>
-                  <label className="flex items-center gap-2"><input name="is_published" type="checkbox" checked={projectForm.is_published} onChange={handleProjectChange} /> Published</label>
-                  <button disabled={isSavingProject} className="bg-[#111214] px-6 py-3 text-sm font-black uppercase tracking-wider text-white transition hover:bg-[#d7a83d] hover:text-[#111214] md:col-span-2">
+                  <input name="location" value={projectForm.location} onChange={handleProjectChange} placeholder="Location" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input name="completion_date" type="date" value={projectForm.completion_date} onChange={handleProjectChange} className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input name="duration" value={projectForm.duration} onChange={handleProjectChange} placeholder="Duration" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input type="file" accept="image/*" onChange={(event) => setCoverImageFile(event.target.files?.[0] || null)} className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b] md:col-span-2" />
+                  <textarea name="description" value={projectForm.description} onChange={handleProjectChange} placeholder="Description" rows="3" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b] md:col-span-2" />
+
+                  <label className="flex items-center gap-2 text-sm font-medium text-[#62646a]"><input name="is_featured" type="checkbox" checked={projectForm.is_featured} onChange={handleProjectChange} /> Featured project</label>
+                  <label className="flex items-center gap-2 text-sm font-medium text-[#62646a]"><input name="is_published" type="checkbox" checked={projectForm.is_published} onChange={handleProjectChange} /> Published</label>
+
+                  <button disabled={isSavingProject} className="rounded-xl bg-[#071b34] px-6 py-3 text-xs font-black uppercase tracking-[0.18em] text-white transition hover:bg-[#10233d] md:col-span-2">
                     {isSavingProject ? 'Saving...' : 'Add New Project'}
                   </button>
-                  {projectError && <p className="text-red-600 md:col-span-2">{projectError}</p>}
+
+                  {projectError && <p className="text-sm text-red-600 md:col-span-2">{projectError}</p>}
                 </form>
 
                 <div className="space-y-3">
                   {projects.map((project) => (
-                    <div key={project.id} className="bg-white rounded-lg shadow p-4 flex justify-between items-center gap-4">
+                    <div key={project.id} className="flex items-center justify-between gap-4 rounded-2xl border border-[#dfe3df] bg-white p-4 shadow-sm">
                       <div>
-                        <h3 className="font-bold">{project.title}</h3>
-                        <p className="text-sm text-gray-600">{project.location || 'Location not specified'}{project.is_featured ? ' | Featured' : ''}</p>
+                        <h3 className="text-lg font-black">{project.title}</h3>
+                        <p className="text-sm text-[#62646a]">{project.location || 'Location not specified'}{project.is_featured ? ' • Featured' : ''}</p>
                       </div>
+
                       <div className="flex items-center gap-3">
-                        <label className="cursor-pointer text-sm font-bold text-[#9b6d12] hover:text-[#111214]">Upload image<input type="file" accept="image/*" className="hidden" onChange={(event) => handleProjectMediaUpload(project.id, event)} /></label>
-                        <button onClick={() => handleDeleteProject(project.id)} className="text-red-600 font-bold">Delete</button>
+                        <label className="cursor-pointer rounded-full border border-[#dfe3df] bg-[#f8f8f6] px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#111214] hover:border-[#071b34]">
+                          Upload image
+                          <input type="file" accept="image/*" className="hidden" onChange={(event) => handleProjectMediaUpload(project.id, event)} />
+                        </label>
+                        <button onClick={() => handleDeleteProject(project.id)} className="text-sm font-black uppercase tracking-[0.18em] text-red-600">
+                          Delete
+                        </button>
                       </div>
                     </div>
                   ))}
-                  {projects.length === 0 && <p className="text-gray-600">No projects yet.</p>}
+
+                  {projects.length === 0 && (
+                    <div className="rounded-2xl border border-dashed border-[#d0d4d2] bg-[#f8f8f6] p-8 text-center text-[#62646a]">
+                      No projects yet.
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
             {activePage === 'requests' && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Service Requests</h2>
-                {requestError && <p className="mb-4 rounded bg-red-100 px-4 py-3 text-red-700">{requestError}</p>}
-                <div className="bg-white rounded-lg shadow overflow-hidden">
-                  <table className="w-full text-left">
-                    <thead className="bg-gray-100 border-b">
-                      <tr>
-                        <th className="text-left px-6 py-3 font-bold">Request ID</th>
-                        <th className="text-left px-6 py-3 font-bold">Customer</th>
-                        <th className="text-left px-6 py-3 font-bold">Service</th>
-                        <th className="text-left px-6 py-3 font-bold">Status</th>
-                        <th className="text-left px-6 py-3 font-bold">Date</th>
-                        <th className="text-left px-6 py-3 font-bold">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {requests.map((request) => (
-                        <tr key={request.id} className="border-b">
-                          <td className="px-6 py-4 font-bold">{request.request_number}</td>
-                          <td className="px-6 py-4">{request.customer_name}<br /><span className="text-sm text-gray-500">{request.customer_email}</span></td>
-                          <td className="px-6 py-4">{request.requested_service || 'General inquiry'}</td>
-                          <td className="px-6 py-4">
-                            <select value={request.status} onChange={(event) => updateRequestStatus(request.id, event.target.value)} className="border rounded px-2 py-1">
-                              {['Submitted', 'Reviewing', 'Quoted', 'Accepted', 'In Progress', 'Completed', 'Rejected'].map((status) => <option key={status} value={status}>{status}</option>)}
-                            </select>
-                          </td>
-                          <td className="px-6 py-4">{new Date(request.created_at).toLocaleDateString()}</td>
-                          <td className="px-6 py-4"><button onClick={() => openRequest(request)} className="font-bold text-[#9b6d12] hover:text-[#111214]">Open</button></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  {!requestError && requests.length === 0 && <p className="p-6 text-gray-600">No service requests yet.</p>}
+                <div className="mb-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Operations</p>
+                  <h2 className="mt-2 text-2xl font-black">Service Requests</h2>
                 </div>
+
+                {requestError && <p className="mb-4 rounded-xl bg-red-100 px-4 py-3 text-sm text-red-700">{requestError}</p>}
+
+                <div className="overflow-hidden rounded-3xl border border-[#dfe3df] bg-white shadow-sm">
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[760px] text-left">
+                      <thead className="bg-[#f8f8f6] text-[#111214]">
+                        <tr>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Request ID</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Customer</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Service</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Status</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Date</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {requests.map((request) => (
+                          <tr key={request.id} className="border-t border-[#edf0ef]">
+                            <td className="px-6 py-4 font-black">{request.request_number}</td>
+                            <td className="px-6 py-4">
+                              <p className="font-bold">{request.customer_name}</p>
+                              <p className="text-sm text-[#62646a]">{request.customer_email}</p>
+                            </td>
+                            <td className="px-6 py-4 text-[#62646a]">{request.requested_service || 'General inquiry'}</td>
+                            <td className="px-6 py-4">
+                              <select value={request.status} onChange={(event) => updateRequestStatus(request.id, event.target.value)} className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-3 py-2 text-sm outline-none focus:border-[#f4b51b]">
+                                {['Submitted', 'Reviewing', 'Quoted', 'Accepted', 'In Progress', 'Completed', 'Rejected'].map((status) => (
+                                  <option key={status} value={status}>{status}</option>
+                                ))}
+                              </select>
+                            </td>
+                            <td className="px-6 py-4 text-[#62646a]">{new Date(request.created_at).toLocaleDateString()}</td>
+                            <td className="px-6 py-4">
+                              <button onClick={() => openRequest(request)} className="text-sm font-black uppercase tracking-[0.18em] text-[#9b6d12] hover:text-[#111214]">
+                                Open
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {!requestError && requests.length === 0 && <p className="p-6 text-[#62646a]">No service requests yet.</p>}
+                </div>
+
                 {selectedRequest && (
-                  <div className="mt-8 bg-white rounded-lg shadow p-6">
-                    <h3 className="text-xl font-bold mb-2">{selectedRequest.request_number}</h3>
-                    <p className="text-gray-600 mb-4">{selectedRequest.customer_name} | {selectedRequest.customer_email}</p>
-                    <div className="space-y-2 mb-4">
-                      {messages.map((item) => <div key={item.id} className="rounded bg-gray-100 p-3"><p className="text-sm text-gray-500">{item.sender?.email || 'Message'}</p><p>{item.message_text}</p></div>)}
-                      {messages.length === 0 && <p className="text-gray-500">No messages yet.</p>}
+                  <div className="mt-8 rounded-3xl border border-[#dfe3df] bg-white p-6 shadow-sm">
+                    <div className="flex flex-col gap-3 border-b border-[#edf0ef] pb-5 md:flex-row md:items-end md:justify-between">
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Selected request</p>
+                        <h3 className="mt-2 text-2xl font-black">{selectedRequest.request_number}</h3>
+                      </div>
+                      <span className="rounded-full bg-[#071b34] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white">
+                        {selectedRequest.status}
+                      </span>
                     </div>
-                    <div className="flex gap-2 mb-8">
-                      <input value={requestMessage} onChange={(event) => setRequestMessage(event.target.value)} placeholder="Reply to customer" className="flex-1 border rounded px-3 py-2" />
-                      <button onClick={sendRequestMessage} className="bg-[#111214] px-4 py-2 font-bold text-white hover:bg-[#d7a83d] hover:text-[#111214]">Send</button>
+
+                    <div className="mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+                      <div>
+                        <p className="text-sm text-[#62646a]">{selectedRequest.customer_name} • {selectedRequest.customer_email}</p>
+                        <div className="mt-5 space-y-3">
+                          {messages.map((item) => (
+                            <div key={item.id} className="rounded-2xl border border-[#e7e9e7] bg-[#f8f8f6] p-3">
+                              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#62646a]">{item.sender?.email || 'Message'}</p>
+                              <p className="mt-2 text-sm leading-6 text-[#111214]">{item.message_text}</p>
+                            </div>
+                          ))}
+
+                          {messages.length === 0 && (
+                            <p className="rounded-2xl border border-dashed border-[#d0d4d2] bg-[#f8f8f6] p-4 text-sm text-[#62646a]">No messages yet.</p>
+                          )}
+                        </div>
+
+                        <div className="mt-5 flex gap-3">
+                          <input value={requestMessage} onChange={(event) => setRequestMessage(event.target.value)} placeholder="Reply to customer" className="flex-1 rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                          <button onClick={sendRequestMessage} className="rounded-xl bg-[#071b34] px-4 py-3 text-[10px] font-black uppercase tracking-[0.18em] text-white transition hover:bg-[#10233d]">
+                            Send
+                          </button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <form onSubmit={createQuotation} className="rounded-2xl border border-[#dfe3df] bg-[#f9f7f2] p-4">
+                          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Create quotation</p>
+                          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                            <input value={quotationForm.service} onChange={(event) => setQuotationForm({ ...quotationForm, service: event.target.value })} placeholder="Service" required className="rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm outline-none focus:border-[#f4b51b] sm:col-span-2" />
+                            <input value={quotationForm.estimated_cost} onChange={(event) => setQuotationForm({ ...quotationForm, estimated_cost: event.target.value })} type="number" min="0" step="0.01" placeholder="Estimated cost" required className="rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                            <input value={quotationForm.additional_charges} onChange={(event) => setQuotationForm({ ...quotationForm, additional_charges: event.target.value })} type="number" min="0" step="0.01" placeholder="Additional charges" className="rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                            <input value={quotationForm.valid_until} onChange={(event) => setQuotationForm({ ...quotationForm, valid_until: event.target.value })} type="date" required className="rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm outline-none focus:border-[#f4b51b] sm:col-span-2" />
+                            <textarea value={quotationForm.description} onChange={(event) => setQuotationForm({ ...quotationForm, description: event.target.value })} placeholder="Quotation description" rows="3" className="rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm outline-none focus:border-[#f4b51b] sm:col-span-2" />
+                            <textarea value={quotationForm.notes} onChange={(event) => setQuotationForm({ ...quotationForm, notes: event.target.value })} placeholder="Notes" rows="2" className="rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm outline-none focus:border-[#f4b51b] sm:col-span-2" />
+                          </div>
+
+                          <button className="mt-4 w-full rounded-xl bg-[#f4b51b] px-4 py-3 text-[10px] font-black uppercase tracking-[0.18em] text-[#111214]">Create quotation</button>
+                        </form>
+                      </div>
                     </div>
-                    <form onSubmit={createQuotation} className="border-t pt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <h4 className="font-bold md:col-span-2">Create quotation</h4>
-                      <input value={quotationForm.service} onChange={(event) => setQuotationForm({ ...quotationForm, service: event.target.value })} placeholder="Service" required className="border rounded px-3 py-2" />
-                      <input value={quotationForm.estimated_cost} onChange={(event) => setQuotationForm({ ...quotationForm, estimated_cost: event.target.value })} type="number" min="0" step="0.01" placeholder="Estimated cost" required className="border rounded px-3 py-2" />
-                      <input value={quotationForm.additional_charges} onChange={(event) => setQuotationForm({ ...quotationForm, additional_charges: event.target.value })} type="number" min="0" step="0.01" placeholder="Additional charges" className="border rounded px-3 py-2" />
-                      <input value={quotationForm.valid_until} onChange={(event) => setQuotationForm({ ...quotationForm, valid_until: event.target.value })} type="date" required className="border rounded px-3 py-2" />
-                      <textarea value={quotationForm.description} onChange={(event) => setQuotationForm({ ...quotationForm, description: event.target.value })} placeholder="Quotation description" rows="3" className="border rounded px-3 py-2 md:col-span-2" />
-                      <textarea value={quotationForm.notes} onChange={(event) => setQuotationForm({ ...quotationForm, notes: event.target.value })} placeholder="Notes" rows="2" className="border rounded px-3 py-2 md:col-span-2" />
-                      <button className="bg-[#d7a83d] px-4 py-3 font-black uppercase tracking-wider text-[#111214] hover:bg-[#edc766] md:col-span-2">Create Quotation</button>
-                    </form>
                   </div>
                 )}
               </div>
@@ -451,89 +545,137 @@ export default function AdminDashboard() {
 
             {activePage === 'customers' && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Manage Customers</h2>
-                {customerError && <p className="mb-4 rounded bg-red-100 px-4 py-3 text-red-700">{customerError}</p>}
-                <div className="bg-white rounded-lg shadow overflow-x-auto">
-                  <table className="w-full text-left">
-                    <thead className="bg-gray-100 border-b">
-                      <tr>
-                        <th className="px-6 py-3 font-bold">Name</th>
-                        <th className="px-6 py-3 font-bold">Email</th>
-                        <th className="px-6 py-3 font-bold">Phone</th>
-                        <th className="px-6 py-3 font-bold">Location</th>
-                        <th className="px-6 py-3 font-bold">Joined</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {customers.map((customer) => {
-                        const profile = Array.isArray(customer.profiles) ? customer.profiles[0] : customer.profiles
-                        return (
-                          <tr key={customer.id} className="border-b">
-                            <td className="px-6 py-4">{profile?.first_name} {profile?.last_name}</td>
-                            <td className="px-6 py-4">{customer.email}</td>
-                            <td className="px-6 py-4">{profile?.phone_number || 'Not provided'}</td>
-                            <td className="px-6 py-4">{profile?.location || 'Not provided'}</td>
-                            <td className="px-6 py-4">{new Date(customer.created_at).toLocaleDateString()}</td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </table>
-                  {!customerError && customers.length === 0 && <p className="p-6 text-gray-600">No customers yet.</p>}
+                <div className="mb-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Client list</p>
+                  <h2 className="mt-2 text-2xl font-black">Manage Customers</h2>
+                </div>
+
+                {customerError && <p className="mb-4 rounded-xl bg-red-100 px-4 py-3 text-sm text-red-700">{customerError}</p>}
+
+                <div className="overflow-hidden rounded-3xl border border-[#dfe3df] bg-white shadow-sm">
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[760px] text-left">
+                      <thead className="bg-[#f8f8f6]">
+                        <tr>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Name</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Email</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Phone</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Location</th>
+                          <th className="px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em]">Joined</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {customers.map((customer) => {
+                          const profile = Array.isArray(customer.profiles) ? customer.profiles[0] : customer.profiles
+                          return (
+                            <tr key={customer.id} className="border-t border-[#edf0ef]">
+                              <td className="px-6 py-4 font-bold">{profile?.first_name} {profile?.last_name}</td>
+                              <td className="px-6 py-4 text-[#62646a]">{customer.email}</td>
+                              <td className="px-6 py-4 text-[#62646a]">{profile?.phone_number || 'Not provided'}</td>
+                              <td className="px-6 py-4 text-[#62646a]">{profile?.location || 'Not provided'}</td>
+                              <td className="px-6 py-4 text-[#62646a]">{new Date(customer.created_at).toLocaleDateString()}</td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {!customerError && customers.length === 0 && <p className="p-6 text-[#62646a]">No customers yet.</p>}
                 </div>
               </div>
             )}
 
             {activePage === 'categories' && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Manage Categories</h2>
-                <form onSubmit={handleCreateCategory} className="flex gap-3 mb-6">
-                  <input value={categoryName} onChange={(event) => setCategoryName(event.target.value)} placeholder="Category name" required className="border rounded px-4 py-2" />
-                  <button className="bg-[#111214] px-6 py-3 text-sm font-black uppercase tracking-wider text-white hover:bg-[#d7a83d] hover:text-[#111214]">Add Category</button>
+                <div className="mb-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Portfolio</p>
+                  <h2 className="mt-2 text-2xl font-black">Manage Categories</h2>
+                </div>
+
+                <form onSubmit={handleCreateCategory} className="mb-6 flex flex-col gap-3 rounded-3xl border border-[#dfe3df] bg-white p-5 shadow-sm sm:flex-row">
+                  <input value={categoryName} onChange={(event) => setCategoryName(event.target.value)} placeholder="Category name" required className="flex-1 rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <button className="rounded-xl bg-[#071b34] px-6 py-3 text-[10px] font-black uppercase tracking-[0.18em] text-white transition hover:bg-[#10233d]">Add category</button>
                 </form>
-                {categoryError && <p className="mb-4 text-red-600">{categoryError}</p>}
+
+                {categoryError && <p className="mb-4 text-sm text-red-600">{categoryError}</p>}
+
                 <div className="space-y-3">
                   {categories.map((category) => (
-                    <div key={category.id} className="bg-white rounded-lg shadow p-4 flex justify-between">
-                      <span className="font-bold">{category.name}</span>
-                      <button onClick={() => handleDeleteCategory(category.id)} className="text-red-600 font-bold">Delete</button>
+                    <div key={category.id} className="flex items-center justify-between rounded-2xl border border-[#dfe3df] bg-white p-4 shadow-sm">
+                      <span className="text-lg font-black">{category.name}</span>
+                      <button onClick={() => handleDeleteCategory(category.id)} className="text-sm font-black uppercase tracking-[0.18em] text-red-600">Delete</button>
                     </div>
                   ))}
-                  {categories.length === 0 && <p className="text-gray-600">No categories yet.</p>}
+
+                  {categories.length === 0 && (
+                    <div className="rounded-2xl border border-dashed border-[#d0d4d2] bg-[#f8f8f6] p-8 text-center text-[#62646a]">
+                      No categories yet.
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
             {activePage === 'analytics' && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Analytics</h2>
-                {analyticsError && <p className="mb-4 rounded bg-red-100 px-4 py-3 text-red-700">{analyticsError}</p>}
-                {analytics && <>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                    {Object.entries(analytics.totals).map(([label, value]) => <div key={label} className="bg-white rounded-lg shadow p-5"><p className="text-gray-500 capitalize">{label.replace(/([A-Z])/g, ' $1')}</p><p className="text-3xl font-bold">{value}</p></div>)}
-                  </div>
-                  <div className="bg-white rounded-lg shadow p-6">
-                    <h3 className="text-xl font-bold mb-4">Requests by status</h3>
-                    <div className="space-y-2">{Object.entries(analytics.requestStatuses).map(([status, count]) => <div key={status} className="flex justify-between border-b py-2"><span>{status}</span><strong>{count}</strong></div>)}</div>
-                  </div>
-                </>}
-                {!analytics && !analyticsError && <p className="text-gray-600">Loading analytics...</p>}
+                <div className="mb-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Performance</p>
+                  <h2 className="mt-2 text-2xl font-black">Analytics</h2>
+                </div>
+
+                {analyticsError && <p className="mb-4 rounded-xl bg-red-100 px-4 py-3 text-sm text-red-700">{analyticsError}</p>}
+
+                {analytics && (
+                  <>
+                    <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3">
+                      {Object.entries(analytics.totals).map(([label, value]) => (
+                        <div key={label} className="rounded-2xl border border-[#dfe3df] bg-white p-5 shadow-sm">
+                          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#62646a]">{label.replace(/([A-Z])/g, ' $1')}</p>
+                          <p className="mt-3 text-3xl font-black">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="rounded-3xl border border-[#dfe3df] bg-white p-6 shadow-sm">
+                      <h3 className="text-xl font-black">Requests by status</h3>
+                      <div className="mt-5 space-y-3">
+                        {Object.entries(analytics.requestStatuses).map(([status, count]) => (
+                          <div key={status} className="flex items-center justify-between border-b border-[#edf0ef] pb-2">
+                            <span className="text-[#62646a]">{status}</span>
+                            <strong>{count}</strong>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {!analytics && !analyticsError && <p className="text-[#62646a]">Loading analytics...</p>}
               </div>
             )}
 
             {activePage === 'settings' && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Settings</h2>
-                <form onSubmit={handleSaveSettings} className="bg-white rounded-lg shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
-                  <input name="business_name" value={settings.business_name} onChange={(event) => setSettings({ ...settings, business_name: event.target.value })} placeholder="Business name" required className="border rounded px-4 py-2" />
-                  <input name="business_phone" value={settings.business_phone || ''} onChange={(event) => setSettings({ ...settings, business_phone: event.target.value })} placeholder="Phone" className="border rounded px-4 py-2" />
-                  <input name="business_email" type="email" value={settings.business_email || ''} onChange={(event) => setSettings({ ...settings, business_email: event.target.value })} placeholder="Email" className="border rounded px-4 py-2" />
-                  <input name="whatsapp_number" value={settings.whatsapp_number || ''} onChange={(event) => setSettings({ ...settings, whatsapp_number: event.target.value })} placeholder="WhatsApp number" className="border rounded px-4 py-2" />
-                  <input name="logo_url" value={settings.logo_url || ''} onChange={(event) => setSettings({ ...settings, logo_url: event.target.value })} placeholder="Logo URL" className="border rounded px-4 py-2 md:col-span-2" />
-                  <input name="business_address" value={settings.business_address || ''} onChange={(event) => setSettings({ ...settings, business_address: event.target.value })} placeholder="Address" className="border rounded px-4 py-2 md:col-span-2" />
-                  <textarea name="business_hours" value={settings.business_hours || ''} onChange={(event) => setSettings({ ...settings, business_hours: event.target.value })} placeholder="Business hours" rows="3" className="border rounded px-4 py-2 md:col-span-2" />
-                  {settingsError && <p className="text-red-600 md:col-span-2">{settingsError}</p>}
-                  <button disabled={isSavingSettings} className="bg-[#111214] px-6 py-3 text-sm font-black uppercase tracking-wider text-white hover:bg-[#d7a83d] hover:text-[#111214] md:col-span-2">{isSavingSettings ? 'Saving...' : 'Save Settings'}</button>
+                <div className="mb-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#b47b15]">Brand</p>
+                  <h2 className="mt-2 text-2xl font-black">Settings</h2>
+                </div>
+
+                <form onSubmit={handleSaveSettings} className="grid max-w-4xl grid-cols-1 gap-4 rounded-3xl border border-[#dfe3df] bg-white p-6 shadow-sm md:grid-cols-2">
+                  <input name="business_name" value={settings.business_name} onChange={(event) => setSettings({ ...settings, business_name: event.target.value })} placeholder="Business name" required className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input name="business_phone" value={settings.business_phone || ''} onChange={(event) => setSettings({ ...settings, business_phone: event.target.value })} placeholder="Phone" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input name="business_email" type="email" value={settings.business_email || ''} onChange={(event) => setSettings({ ...settings, business_email: event.target.value })} placeholder="Email" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input name="whatsapp_number" value={settings.whatsapp_number || ''} onChange={(event) => setSettings({ ...settings, whatsapp_number: event.target.value })} placeholder="WhatsApp number" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b]" />
+                  <input name="logo_url" value={settings.logo_url || ''} onChange={(event) => setSettings({ ...settings, logo_url: event.target.value })} placeholder="Logo URL" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b] md:col-span-2" />
+                  <input name="business_address" value={settings.business_address || ''} onChange={(event) => setSettings({ ...settings, business_address: event.target.value })} placeholder="Address" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b] md:col-span-2" />
+                  <textarea name="business_hours" value={settings.business_hours || ''} onChange={(event) => setSettings({ ...settings, business_hours: event.target.value })} placeholder="Business hours" rows="3" className="rounded-xl border border-[#dfe3df] bg-[#f8f8f6] px-4 py-3 text-sm outline-none focus:border-[#f4b51b] md:col-span-2" />
+
+                  {settingsError && <p className="text-sm text-red-600 md:col-span-2">{settingsError}</p>}
+
+                  <button disabled={isSavingSettings} className="rounded-xl bg-[#071b34] px-6 py-3 text-[10px] font-black uppercase tracking-[0.18em] text-white transition hover:bg-[#10233d] md:col-span-2">
+                    {isSavingSettings ? 'Saving...' : 'Save Settings'}
+                  </button>
                 </form>
               </div>
             )}
