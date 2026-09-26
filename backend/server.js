@@ -5,11 +5,28 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const allowedOrigins = new Set([
+const rawAllowedOrigins = [
   process.env.FRONTEND_URL,
+  process.env.CORS_ORIGIN,
   'http://localhost:5173',
   'http://localhost:5174',
-]);
+  'https://impact-construction-nine.vercel.app',
+].join(',');
+
+const allowedOrigins = new Set(
+  rawAllowedOrigins
+    .split(',')
+    .map((value) => value?.trim())
+    .filter(Boolean)
+    .map((value) => {
+      try {
+        return new URL(value).origin;
+      } catch {
+        return value;
+      }
+    })
+    .filter(Boolean)
+);
 
 // Middleware
 app.use(express.json());
