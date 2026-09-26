@@ -1,0 +1,34 @@
+/* App Styles */
+:root {
+  --primary-color: #1e40af;
+  --secondary-color: #7c3aed;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --neutral-100: #f3f4f6;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+}
+
+[data-theme="dark"] {
+  --primary-color: #60a5fa;
+  --neutral-100: #1f2937;
+  --neutral-200: #111827;
+}
+
+body {
+  background-color: var(--neutral-100);
+  color: var(--neutral-900);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--neutral-800);
+  color: var(--neutral-100);
+}

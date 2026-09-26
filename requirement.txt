@@ -1,0 +1,940 @@
+Build a modern, professional, responsive full-stack web application for a business that wants to showcase its completed work and allow customers to interact with projects and request similar services.
+
+## PROJECT OBJECTIVE
+
+Create an interactive **Work Showcase & Customer Service Request Platform**.
+
+The business administrator should be able to upload photos and videos of completed projects. Customers should be able to browse the projects, watch videos, view images, like, rate, comment, share projects, and request the same or similar service.
+
+The platform should feel like a professional modern business website combined with a lightweight customer-management system.
+
+---
+
+# TECHNOLOGY STACK
+
+Use:
+
+- Frontend: React.js
+- Backend: Node.js + Express.js
+- Database: Supabase PostgreSQL
+- Supabase Storage for images, videos, and customer attachments
+- REST API architecture
+- Modern CSS/Tailwind CSS
+- Responsive design
+- Authentication with secure role-based access
+- PWA support so the website can be installed on mobile devices
+- Environment variables for all secrets and configuration
+
+Structure the application cleanly with separate frontend and backend directories.
+
+---
+
+# USER ROLES
+
+There should be two main roles:
+
+### 1. Customer/User
+
+Customers can:
+
+- Browse projects
+- Watch videos
+- View images
+- Search projects
+- Filter projects
+- Like projects
+- Rate projects
+- Comment on projects
+- Share projects
+- Request a similar service
+- Upload files/images with requests
+- Contact the business
+- Receive notifications
+- Track their service requests
+- Manage their profile
+
+### 2. Administrator
+
+Administrators can:
+
+- Log in securely
+- Manage projects
+- Upload images and videos
+- Edit projects
+- Delete projects
+- Feature projects
+- Manage categories
+- View customer requests
+- Manage customers
+- Respond to requests
+- Update request status
+- Moderate comments and reviews
+- View analytics
+- Manage notifications
+- Manage business information
+
+---
+
+# PUBLIC WEBSITE
+
+Create the following pages:
+
+## 1. Home Page
+
+Create a visually impressive professional landing page containing:
+
+- Navigation bar
+- Business logo
+- Hero section
+- Strong headline
+- Short business introduction
+- Call-to-action buttons
+- Featured projects
+- Latest projects
+- Popular projects
+- Services section
+- Why choose us section
+- Customer reviews
+- Statistics
+- Contact section
+- Footer
+
+Hero buttons:
+
+"View Our Work"
+
+"Request a Service"
+
+Use smooth animations and professional transitions without making the interface slow or distracting.
+
+---
+
+# 2. Projects Gallery
+
+Create a dedicated projects page.
+
+Display projects in attractive cards.
+
+Each project card should contain:
+
+- Cover image/video
+- Project title
+- Category
+- Location
+- Rating
+- Like count
+- View count
+- Short description
+- View Project button
+- Request Similar Job button
+
+Allow users to:
+
+- Search
+- Filter by category
+- Filter by location
+- Sort by latest
+- Sort by popularity
+- Sort by rating
+
+Use pagination or infinite scrolling for large numbers of projects.
+
+---
+
+# 3. Project Details Page
+
+Every project must have its own unique URL.
+
+Example:
+
+/projects/modern-compound-paving
+
+Display:
+
+- Large project image/video
+- Image gallery
+- Video player
+- Project title
+- Description
+- Category
+- Location
+- Completion date
+- Services provided
+- Materials used
+- Project duration
+- Views
+- Likes
+- Rating
+- Comments
+
+Add action buttons:
+
+❤️ Like
+
+⭐ Rate
+
+💬 Comment
+
+🔗 Share
+
+📩 Request This Service
+
+Allow users to share the project through:
+
+- WhatsApp
+- Facebook
+- X
+- Copy link
+- Native mobile sharing where supported
+
+When a user clicks "Request This Service", automatically associate the request with that project.
+
+---
+
+# 4. Before & After Feature
+
+Allow administrators to upload:
+
+- Before image
+- After image
+
+Display them using an interactive before/after comparison slider.
+
+---
+
+# 5. Customer Registration & Login
+
+Allow customers to create accounts using:
+
+- Name
+- Email
+- Phone number
+- Password
+
+Provide:
+
+- Login
+- Registration
+- Logout
+- Forgot password
+- Password reset
+- Profile management
+
+Do not require registration for basic browsing.
+
+Allow anonymous visitors to view public projects.
+
+Require authentication for actions such as:
+
+- Like
+- Comment
+- Rate
+- Track requests
+
+---
+
+# 6. Request This Service
+
+Create a professional service request form.
+
+When a customer clicks "Request This Service" from a project, automatically attach the selected project.
+
+Form fields:
+
+- Customer name
+- Email
+- Phone
+- Location
+- Requested service
+- Related project
+- Description
+- Preferred date
+- Optional estimated budget
+- File/image upload
+- Additional information
+
+Allow multiple attachments.
+
+After submission:
+
+Show a confirmation message such as:
+
+"Your request has been successfully submitted. The business will review your request and contact you shortly."
+
+Generate a unique request/reference number.
+
+Example:
+
+REQ-2026-00125
+
+---
+
+# 7. Customer Dashboard
+
+Create a customer dashboard.
+
+Display:
+
+- Welcome message
+- Total requests
+- Pending requests
+- Accepted requests
+- Completed requests
+- Notifications
+
+Dashboard sections:
+
+### My Requests
+
+Show:
+
+- Request ID
+- Requested service
+- Related project
+- Date
+- Status
+- Last update
+
+Request statuses:
+
+Submitted
+→ Reviewing
+→ Quoted
+→ Accepted
+→ In Progress
+→ Completed
+
+Allow the customer to open a request and see its details.
+
+---
+
+# 8. Customer Notifications
+
+Create an in-app notification system.
+
+Customers should receive notifications when:
+
+- Request is submitted
+- Admin responds
+- Request status changes
+- Request is accepted
+- Request is rejected
+- Quote is provided
+- Admin sends a message
+
+Show an unread notification badge in the navigation bar.
+
+---
+
+# 9. Reviews & Ratings
+
+Allow customers to rate projects from 1–5 stars.
+
+Allow written reviews.
+
+Display:
+
+- Average rating
+- Number of ratings
+- Customer reviews
+
+Prevent duplicate ratings from the same user for the same project.
+
+Only allow verified customers who have completed a related service to leave a "verified customer" review, if the business chooses to enable this feature.
+
+Administrators must be able to moderate reviews.
+
+---
+
+# 10. Comments
+
+Users can comment on projects.
+
+Support:
+
+- Add comment
+- Delete own comment
+- Admin moderation
+- Report inappropriate comment
+
+Show comments in a clean discussion section.
+
+---
+
+# 11. Contact Page
+
+Create a professional contact page containing:
+
+- Business phone
+- Email
+- WhatsApp
+- Address/location
+- Business hours
+- Social media links
+- Contact form
+- Map integration
+
+Add a floating WhatsApp/contact button where appropriate.
+
+---
+
+# ADMIN DASHBOARD
+
+Create a completely separate protected admin dashboard.
+
+The admin dashboard should have a professional SaaS-style interface.
+
+Sidebar navigation:
+
+Dashboard
+Projects
+Categories
+Requests
+Customers
+Reviews
+Comments
+Notifications
+Analytics
+Settings
+Logout
+
+---
+
+# ADMIN DASHBOARD OVERVIEW
+
+Display statistics:
+
+- Total projects
+- Total customers
+- Total requests
+- Pending requests
+- Completed requests
+- Total project views
+- Total likes
+- Average rating
+
+Include charts for:
+
+- Requests over time
+- Project views
+- Popular projects
+- Most requested services
+- Customer activity
+
+---
+
+# PROJECT MANAGEMENT
+
+Admin should be able to:
+
+### Create Project
+
+Fields:
+
+- Project title
+- Description
+- Category
+- Location
+- Completion date
+- Services
+- Materials
+- Project duration
+- Cover image
+- Multiple project images
+- Project video
+- Before image
+- After image
+- Featured status
+- Published status
+
+### Edit Project
+
+Admin can update all project information.
+
+### Delete Project
+
+Require confirmation before deletion.
+
+### Feature Project
+
+Allow admin to mark projects as featured.
+
+Featured projects appear on the homepage.
+
+---
+
+# MEDIA MANAGEMENT
+
+Support:
+
+- Image uploads
+- Video uploads
+- Multiple images
+- Video thumbnails
+- File validation
+- File size validation
+- Upload progress
+- Delete media
+- Replace media
+
+Store files in Supabase Storage.
+
+Do not store large media files directly inside PostgreSQL.
+
+Store their URLs/references in the database.
+
+---
+
+# REQUEST MANAGEMENT
+
+Create an admin request management page.
+
+Display requests in a table:
+
+Request ID
+Customer
+Service
+Related Project
+Location
+Date
+Status
+Actions
+
+Allow admin to:
+
+- View request
+- Accept
+- Reject
+- Change status
+- Add notes
+- Send response
+- Provide quotation
+- Contact customer
+
+When rejecting a request, allow the admin to provide a reason.
+
+---
+
+# REQUEST DETAILS
+
+Display:
+
+Customer information
+Requested service
+Related project
+Description
+Location
+Preferred date
+Attachments
+Request history
+Admin notes
+Current status
+
+Include a timeline:
+
+Submitted
+↓
+Reviewing
+↓
+Quoted
+↓
+Accepted
+↓
+In Progress
+↓
+Completed
+
+---
+
+# QUOTATION SYSTEM
+
+Allow administrators to optionally provide a quotation.
+
+Quotation fields:
+
+- Service
+- Description
+- Estimated cost
+- Additional charges
+- Total
+- Valid until
+- Notes
+
+Customers can view the quotation from their dashboard.
+
+Allow the customer to:
+
+Accept quotation
+Decline quotation
+
+Record the decision in the database.
+
+---
+
+# CUSTOMER MANAGEMENT
+
+Admin should be able to:
+
+- View customers
+- Search customers
+- View customer profile
+- View customer's requests
+- View customer's reviews
+- View activity
+- Disable/enable account where necessary
+
+---
+
+# CATEGORY MANAGEMENT
+
+Allow administrators to create, edit, and delete categories.
+
+Examples:
+
+- Construction
+- Landscaping
+- Paving
+- Interlocking
+- Painting
+- Roofing
+- Renovation
+- Interior Design
+
+Do not hard-code categories.
+
+---
+
+# ANALYTICS
+
+Track:
+
+- Project views
+- Likes
+- Shares where technically measurable
+- Ratings
+- Comments
+- Service requests
+- Most viewed projects
+- Most liked projects
+- Most requested services
+- Customer registrations
+
+Create charts and summary cards.
+
+---
+
+# SEARCH
+
+Implement a global project search.
+
+Search by:
+
+- Project title
+- Description
+- Category
+- Location
+- Service
+
+Provide useful empty states when no projects are found.
+
+---
+
+# RESPONSIVE DESIGN
+
+The application must work perfectly on:
+
+- Desktop
+- Laptop
+- Tablet
+- Android
+- iPhone
+
+Use a mobile-first responsive design.
+
+The admin dashboard must also be responsive.
+
+On mobile, convert the sidebar into a collapsible navigation menu.
+
+---
+
+# UI/UX REQUIREMENTS
+
+Create a premium, modern interface.
+
+Use:
+
+- Clean typography
+- Professional spacing
+- Modern cards
+- Subtle shadows
+- Rounded corners
+- Smooth transitions
+- Skeleton loaders
+- Toast notifications
+- Confirmation dialogs
+- Empty states
+- Error states
+- Loading states
+
+Do not create an overly complicated interface.
+
+Prioritize:
+
+1. Ease of use
+2. Speed
+3. Mobile responsiveness
+4. Accessibility
+5. Professional appearance
+
+Use a consistent design system throughout the entire application.
+
+---
+
+# SECURITY
+
+Implement:
+
+- Secure authentication
+- Role-based authorization
+- Protected admin routes
+- Input validation
+- File validation
+- Secure password handling
+- API authentication
+- Supabase Row Level Security where appropriate
+- Protection against unauthorized project editing
+- Protection against unauthorized request access
+- Rate limiting for sensitive endpoints
+- Environment variables for secrets
+
+Never expose:
+
+- Supabase service-role keys
+- Database passwords
+- API secrets
+- Private credentials
+
+in frontend code.
+
+---
+
+# DATABASE
+
+Create a properly normalized Supabase PostgreSQL database.
+
+Suggested tables:
+
+users
+profiles
+projects
+project_media
+categories
+likes
+ratings
+comments
+service_requests
+request_attachments
+request_messages
+quotations
+notifications
+project_views
+business_settings
+
+Create appropriate:
+
+- Primary keys
+- Foreign keys
+- Unique constraints
+- Indexes
+- Timestamps
+- Relationships
+
+Use UUIDs where appropriate.
+
+---
+
+# API
+
+Create a clean Express REST API.
+
+Example endpoints:
+
+GET /api/projects
+
+GET /api/projects/:id
+
+POST /api/projects
+
+PUT /api/projects/:id
+
+DELETE /api/projects/:id
+
+POST /api/projects/:id/like
+
+POST /api/projects/:id/rating
+
+POST /api/projects/:id/comments
+
+GET /api/requests
+
+POST /api/requests
+
+GET /api/requests/:id
+
+PUT /api/requests/:id/status
+
+POST /api/requests/:id/messages
+
+POST /api/requests/:id/quotation
+
+GET /api/notifications
+
+PUT /api/notifications/:id/read
+
+Create appropriate authentication middleware and admin authorization middleware.
+
+---
+
+# PERFORMANCE
+
+Optimize the application for fast loading.
+
+Use:
+
+- Lazy loading
+- Image compression
+- Responsive images
+- Pagination
+- Efficient database queries
+- Caching where appropriate
+- Video thumbnails
+- Optimized API requests
+
+Do not load every project and every image at once.
+
+---
+
+# PWA
+
+Make the website installable as a Progressive Web App.
+
+Include:
+
+- Web app manifest
+- Service worker
+- App icons
+- Install prompt
+- Mobile-friendly interface
+
+The application should feel similar to a mobile application when installed.
+
+---
+
+# NOTIFICATIONS
+
+Design the notification architecture so it can later support:
+
+- Browser push notifications
+- Email notifications
+- WhatsApp notifications
+- SMS notifications
+
+Start with in-app notifications and browser push notifications where practical.
+
+---
+
+# ERROR HANDLING
+
+Create professional error handling throughout the application.
+
+Examples:
+
+- Network error
+- Failed upload
+- Invalid form
+- Unauthorized access
+- Server error
+- Missing project
+- Invalid request
+
+Never leave the user staring at a blank page.
+
+Display useful error messages.
+
+---
+
+# SEO
+
+Implement basic SEO:
+
+- Dynamic page titles
+- Meta descriptions
+- Open Graph metadata
+- Social sharing previews
+- Semantic HTML
+- SEO-friendly project URLs
+
+Each project should have a shareable URL and attractive social preview.
+
+---
+
+# FINAL USER EXPERIENCE
+
+The complete flow should work like this:
+
+1. Visitor opens the website.
+2. Visitor sees the business and its services.
+3. Visitor browses completed projects.
+4. Visitor opens a project.
+5. Visitor watches the video/views images.
+6. Visitor can like, rate, comment, or share.
+7. Visitor clicks "Request This Service".
+8. Visitor submits their information.
+9. The request enters the admin dashboard.
+10. Admin receives a notification.
+11. Admin reviews the request.
+12. Admin communicates with the customer.
+13. Admin optionally sends a quotation.
+14. Customer accepts or declines.
+15. Admin updates the job status.
+16. Customer tracks the progress from their dashboard.
+17. Once completed, the customer can leave a review.
+
+---
+
+# DEVELOPMENT REQUIREMENTS
+
+Before writing the complete application:
+
+1. Design the database schema.
+2. Create the Supabase tables and relationships.
+3. Configure Supabase Storage buckets.
+4. Set up the Express backend.
+5. Create authentication.
+6. Build the API.
+7. Build the React frontend.
+8. Build public pages.
+9. Build customer dashboard.
+10. Build admin dashboard.
+11. Connect frontend to backend.
+12. Implement file uploads.
+13. Implement notifications.
+14. Implement search/filtering.
+15. Implement analytics.
+16. Test all major user flows.
+17. Fix errors and broken routes.
+18. Optimize mobile responsiveness.
+19. Prepare production environment variables.
+20. Prepare the application for deployment.
+
+Do not generate fake functionality.
+
+Every button that is implemented should perform a real action.
+
+Do not use placeholder data once the database/API is connected.
+
+Use clean, maintainable, modular code.
+
+Add comments only where they improve understanding.
+
+The final result should look and behave like a real production-ready business platform, not a simple student demo.
